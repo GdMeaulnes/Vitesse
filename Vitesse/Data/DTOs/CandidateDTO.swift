@@ -18,6 +18,15 @@ struct CandidateDTO: Codable {
     let isFavorite: Bool
 }
 
+struct NewCandidateDTO: Codable {
+    let firstName: String
+    let lastName: String
+    let email: String
+    let phone: String
+    let linkedinURL: String
+    let note: String
+}
+
 
 let sampleCandidate: CandidateDTO = .init(
     id: "E96F7E52-23E1-4797-8D64-EA4A0D6DA71A",
