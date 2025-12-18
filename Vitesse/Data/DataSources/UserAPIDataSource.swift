@@ -15,9 +15,10 @@ enum UserAPIDataSourceError: Error {
 
 class UserAPIDataSource {
     
+    // Description: Permet de créer un compte utilisateur dans l'API
     func postNewUser(newUser: UserDTOs) async throws -> Bool {
         
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/candidate"))!)
+        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/user/register"))!)
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(newUser)
         
@@ -29,6 +30,7 @@ class UserAPIDataSource {
         return true
     }
     
+    // Description: Permet de s'authentifier dans l'API et de générer un token pour utliser l'API
     func loginAdmin(admin: AdminDTO) async throws -> AdminTokenDTO {
         
         var request = URLRequest(url: URL(string: (vaporServerAdresse + "/user/auth"))!)

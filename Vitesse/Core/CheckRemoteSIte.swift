@@ -9,6 +9,7 @@ import Foundation
 
 class CheckRemoteSIte {
     
+    // Description: Il s'agit d'une route pour vérifier si l'API est lancée. Doit retourner "It works" si le serveur est correctement lancé.
     func checkRemoteSite() async throws -> Bool {
 
         var request = URLRequest(url: URL(string: (vaporServerAdresse + "/"))!)
@@ -17,12 +18,9 @@ class CheckRemoteSIte {
         let (_, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            isSiteAlive = false
-            throw URLError(.badServerResponse)
+            return false
         }
-        isSiteAlive = true
-
-        return isSiteAlive
+        return true
     }
     
 }

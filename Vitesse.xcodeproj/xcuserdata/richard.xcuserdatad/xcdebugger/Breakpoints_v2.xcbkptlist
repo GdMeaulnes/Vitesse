@@ -24,5 +24,79 @@
             </Actions>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C76FE31-72D9-4C07-9E47-8855FE1F6BEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vitesse/Presentation/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "6C76FE31-72D9-4C07-9E47-8855FE1F6BEE - bed2bdd3866a0d51"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 () async -&gt; () in closure #5 @Swift.MainActor () -&gt; () in Vitesse.ContentView.body.getter : some"
+                  moduleName = "Vitesse.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richard/Documents/Documents%20-%20Jupiter/MatchAndPatch/Salariat/Richard/Formation/BootCampSwift/ProjetFinal/Vitesse/Vitesse/Presentation/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48">
+               </Location>
+               <Location
+                  uuid = "6C76FE31-72D9-4C07-9E47-8855FE1F6BEE - c358975acca2337b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 () async -&gt; () in closure #5 @Swift.MainActor () -&gt; () in Vitesse.ContentView.body.getter : some"
+                  moduleName = "Vitesse.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richard/Documents/Documents%20-%20Jupiter/MatchAndPatch/Salariat/Richard/Formation/BootCampSwift/ProjetFinal/Vitesse/Vitesse/Presentation/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48">
+               </Location>
+               <Location
+                  uuid = "6C76FE31-72D9-4C07-9E47-8855FE1F6BEE - a43e727940bdd157"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 () async -&gt; () in closure #5 @Swift.MainActor () -&gt; () in Vitesse.ContentView.body.getter : some"
+                  moduleName = "Vitesse.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richard/Documents/Documents%20-%20Jupiter/MatchAndPatch/Salariat/Richard/Formation/BootCampSwift/ProjetFinal/Vitesse/Vitesse/Presentation/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48">
+               </Location>
+               <Location
+                  uuid = "6C76FE31-72D9-4C07-9E47-8855FE1F6BEE - d6543e7369d3375a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 () async -&gt; () in closure #5 @Swift.MainActor () -&gt; () in Vitesse.ContentView.body.getter : some"
+                  moduleName = "Vitesse.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richard/Documents/Documents%20-%20Jupiter/MatchAndPatch/Salariat/Richard/Formation/BootCampSwift/ProjetFinal/Vitesse/Vitesse/Presentation/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

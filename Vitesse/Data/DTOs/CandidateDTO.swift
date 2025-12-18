@@ -8,23 +8,23 @@
 import Foundation
 
 struct CandidateDTO: Codable {
-    let id: String
-    let firstName: String
-    let lastName: String
-    let email: String
-    let phone: String
-    let linkedinURL: String
-    let note: String
-    let isFavorite: Bool
+    var id: String
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String
+    var linkedinURL: String
+    var note: String
+    var isFavorite: Bool
 }
 
-struct NewCandidateDTO: Codable {
-    let firstName: String
-    let lastName: String
-    let email: String
-    let phone: String
-    let linkedinURL: String
-    let note: String
+struct NewOrUpdatedCandidateDTO: Codable {
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String
+    var linkedinURL: String
+    var note: String
 }
 
 
