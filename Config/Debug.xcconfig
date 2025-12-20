@@ -1,0 +1,12 @@
+//
+//  Debug.xcconfig
+//  Vitesse
+//
+//  Created by Richard DOUXAMI on 19/12/2025.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+#include "Secret.xcconfig"
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG

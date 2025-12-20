@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_ADMIN_NAME</key>
+	<string>$(API_ADIM_NAME)</string>
+	<key>API_ADMIN_PWD</key>
+	<string>$(API_ADMIN_PWD)</string>
+	<key>API_PROTOCOL</key>
+	<string>$(API_PROTOCOL)</string>
+	<key>API_HOST</key>
+	<string>$(API_HOST)</string>
+	<key>API_PORT</key>
+	<string>$(API_PORT)</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UILaunchScreen</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>

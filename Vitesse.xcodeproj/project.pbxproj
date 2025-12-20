@@ -29,9 +29,39 @@
 		79853A282EF1B37E0039C41C /* VitesseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VitesseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		794024A12EF5879D00968AB8 /* Exceptions for "Vitesse" folder in "Vitesse" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 79853A102EF1B37D0039C41C /* Vitesse */;
+		};
+		79C276FE2EF576D000980682 /* Exceptions for "Config" folder in "Vitesse" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Debug.xcconfig,
+				Release.xcconfig,
+				Secret.xcconfig,
+			);
+			target = 79853A102EF1B37D0039C41C /* Vitesse */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		791498452EF5729900886F37 /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				79C276FE2EF576D000980682 /* Exceptions for "Config" folder in "Vitesse" target */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		79853A132EF1B37D0039C41C /* Vitesse */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				794024A12EF5879D00968AB8 /* Exceptions for "Vitesse" folder in "Vitesse" target */,
+			);
 			path = Vitesse;
 			sourceTree = "<group>";
 		};
@@ -75,6 +105,7 @@
 		79853A082EF1B37D0039C41C = {
 			isa = PBXGroup;
 			children = (
+				791498452EF5729900886F37 /* Config */,
 				79853A132EF1B37D0039C41C /* Vitesse */,
 				79853A212EF1B37E0039C41C /* VitesseTests */,
 				79853A2B2EF1B37E0039C41C /* VitesseUITests */,
@@ -108,6 +139,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				791498452EF5729900886F37 /* Config */,
 				79853A132EF1B37D0039C41C /* Vitesse */,
 			);
 			name = Vitesse;
@@ -271,6 +303,8 @@
 /* Begin XCBuildConfiguration section */
 		79853A302EF1B37E0039C41C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 791498452EF5729900886F37 /* Config */;
+			baseConfigurationReferenceRelativePath = Debug.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -335,6 +369,8 @@
 		};
 		79853A312EF1B37E0039C41C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 791498452EF5729900886F37 /* Config */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -400,9 +436,9 @@
 				DEVELOPMENT_TEAM = PLF54H8ML5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Vitesse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -410,6 +446,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.douxami.richard.Vitesse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -432,9 +469,9 @@
 				DEVELOPMENT_TEAM = PLF54H8ML5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Vitesse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -442,6 +479,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.douxami.richard.Vitesse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

@@ -7,18 +7,14 @@
 
 import Foundation
 
-enum UserAPIDataSourceError: Error {
-    case invalidResponse
-    case noDataReturned
-    case decodingError
-}
+
 
 class UserAPIDataSource {
     
     // Description: Permet de créer un compte utilisateur dans l'API
-    func postNewUser(newUser: UserDTOs) async throws -> Bool {
+    func postNewUser(newUser: UserDTO) async throws -> Bool {
         
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/user/register"))!)
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/user/register"))!)
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(newUser)
         
@@ -31,9 +27,9 @@ class UserAPIDataSource {
     }
     
     // Description: Permet de s'authentifier dans l'API et de générer un token pour utliser l'API
-    func loginAdmin(admin: AdminDTO) async throws -> AdminTokenDTO {
+    func login(admin: UserDTO) async throws -> TokenDTO {
         
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/user/auth"))!)
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/user/auth"))!)
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(admin)
         
@@ -44,8 +40,8 @@ class UserAPIDataSource {
         }
         
         do {
-            let adminToken: AdminTokenDTO = try JSONDecoder().decode(AdminTokenDTO.self, from: data)
-            return adminToken
+            let token: TokenDTO = try JSONDecoder().decode(TokenDTO.self, from: data)
+            return token
         } catch {
             throw UserAPIDataSourceError.decodingError
         }

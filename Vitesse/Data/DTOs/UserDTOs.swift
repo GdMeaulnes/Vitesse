@@ -7,35 +7,23 @@
 
 import Foundation
 
-struct UserDTOs: Codable {
-    var email: String
-    var password: String
-    var firstName: String
-    var lastName: String
+enum UserAPIDataSourceError: Error {
+    case invalidResponse
+    case noDataReturned
+    case decodingError
 }
 
-struct AdminDTO: Codable {
+// Structure correspondant à la table 'users' de la base db.sqlite
+struct UserDTO: Codable {
     let email: String
     let password: String
-
-    init(
-        email: String = "admin@vitesse.com",
-        password: String = "test123"
-    ) {
-        self.email = email
-        self.password = password
-    }
+    let firstName: String
+    let lastName: String
 }
 
-struct AdminTokenDTO: Codable {
+struct TokenDTO: Codable {
     let accessToken: String
     let isAdmin: Bool
 }
 
-let sampleUser1: UserDTOs = .init(
-    email : "user1@vitesse.com",
-    password : "user1",
-    firstName : "User1Firstname",
-    lastName : "User1Lastname"
-)
 

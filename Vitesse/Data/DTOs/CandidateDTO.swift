@@ -7,34 +7,47 @@
 
 import Foundation
 
+enum CandidateAPIDataSourceError: Error {
+    case invalidResponse
+    case noDataReturned
+    case decodingError
+}
+
+// Structure coorespondant à la table 'canditate' de la base db.sqlite
+struct CandidateDataBaseDTO: Decodable {
+    let id: String
+    let isFavorite: Bool
+    let candidate: CandidateDTO
+
+    enum CodingKeys: String, CodingKey {
+        case id, isFavorite
+        case firstName, lastName, email, phone, linkedinURL, note
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(String.self, forKey: .id)
+        isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
+
+        candidate = CandidateDTO(
+            firstName: try container.decode(String.self, forKey: .firstName),
+            lastName: try container.decode(String.self, forKey: .lastName),
+            email: try container.decode(String.self, forKey: .email),
+            phone: try container.decode(String.self, forKey: .phone),
+            linkedinURL: try container.decode(String.self, forKey: .linkedinURL),
+            note: try container.decode(String.self, forKey: .note)
+        )
+    }
+}
+
+// Structure inteface avec la base db.sqlite pour POST (Insert) et PUT (Update)
 struct CandidateDTO: Codable {
-    var id: String
-    var firstName: String
-    var lastName: String
-    var email: String
-    var phone: String
-    var linkedinURL: String
-    var note: String
-    var isFavorite: Bool
+    let firstName: String
+    let lastName: String
+    let email: String
+    let phone: String
+    let linkedinURL: String
+    let note: String
 }
 
-struct NewOrUpdatedCandidateDTO: Codable {
-    var firstName: String
-    var lastName: String
-    var email: String
-    var phone: String
-    var linkedinURL: String
-    var note: String
-}
-
-
-let sampleCandidate: CandidateDTO = .init(
-    id: "E96F7E52-23E1-4797-8D64-EA4A0D6DA71A",
-    firstName: "candidat1Nom",
-    lastName: "candidat1Prenom",
-    email: "candidat1@firm.com",
-    phone: "+33987654321",
-    linkedinURL: "https://lienLinkedId.com",
-    note: "Ceci est une note candidat",
-    isFavorite: false
-)

@@ -7,17 +7,16 @@
 
 import Foundation
 
-enum CandidateAPIDataSourceError: Error {
-    case invalidResponse
-    case noDataReturned
-    case decodingError
-}
+
 
 class CandidateAPIDataSource {
     
     // Description: Permet de récuperer la liste des candidats
-    func getAllCandidats() async throws -> [CandidateDTO] {
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/candidate"))!)
+    func getAllCandidats() async throws -> [CandidateDataBaseDTO] {
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate"))!)
+        print("Request: \(request)")
+        
+        
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = header
 
@@ -29,16 +28,16 @@ class CandidateAPIDataSource {
         }
 
         do {
-            let candidats: [CandidateDTO] = try JSONDecoder().decode([CandidateDTO].self, from: data)
-            return candidats
+            let candidateDataBase: [CandidateDataBaseDTO] = try JSONDecoder().decode([CandidateDataBaseDTO].self, from: data)
+            return candidateDataBase
         } catch {
             throw CandidateAPIDataSourceError.decodingError
         }
     }
     
     // Description: Permet de récuperer le détail d'un candidat via son ID (``:candidateId`)
-    func getCandidatById(id: String) async throws -> CandidateDTO {
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/candidate/\(id)"))!)
+    func getCandidatById(id: String) async throws -> CandidateDataBaseDTO {
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate/\(id)"))!)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = header
         
@@ -50,19 +49,19 @@ class CandidateAPIDataSource {
         }
         
         do {
-            let candidat: CandidateDTO = try JSONDecoder().decode(CandidateDTO.self, from: data)
-            return candidat
+            let candidateDataBase: CandidateDataBaseDTO = try JSONDecoder().decode(CandidateDataBaseDTO.self, from: data)
+            return candidateDataBase
         } catch {
             throw CandidateAPIDataSourceError.decodingError
         }
     }
     
     // Description: Permet de créer un candidat
-    func postNewCandidate(candidat: NewOrUpdatedCandidateDTO) async throws -> Bool {
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/candidate"))!)
+    func postNewCandidate(candidate: CandidateDTO) async throws -> Bool {
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate"))!)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = header
-        request.httpBody = try? JSONEncoder().encode(candidat)
+        request.httpBody = try? JSONEncoder().encode(candidate)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let (_, response) = try await URLSession.shared.data(for: request)
@@ -76,19 +75,12 @@ class CandidateAPIDataSource {
     
     //Description: Permet de mettre à jour un candidat via son identifiant fourni dans l'URL (candidateId)
     // Pas d'update du champs isFavorite
-    func updateCandidateById(candidat: CandidateDTO) async throws -> Bool {
-        let id = candidat.id
-        let updatedCandidate : NewOrUpdatedCandidateDTO = .init(firstName : candidat.firstName,
-                                                                lastName : candidat.lastName,
-                                                                email : candidat.email,
-                                                                phone: candidat.phone,
-                                                                linkedinURL : candidat.linkedinURL,
-                                                                note : candidat.note)
+    func updateCandidateById(id: String, candidate: CandidateDTO) async throws -> Bool {
         
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/candidate/\(id)"))!)
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate/\(id)"))!)
         request.httpMethod = "PUT"
         request.allHTTPHeaderFields = header
-        request.httpBody = try JSONEncoder().encode(updatedCandidate)
+        request.httpBody = try JSONEncoder().encode(candidate)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let (_, response) = try await URLSession.shared.data(for: request)
@@ -104,7 +96,7 @@ class CandidateAPIDataSource {
     
     // Description: Permet de supprimer un candidat
     func deleteCandidatById(id: String) async throws -> Bool {
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/candidate/\(id)"))!)
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate/\(id)"))!)
         request.httpMethod = "DELETE"
         request.allHTTPHeaderFields = header
         
@@ -120,7 +112,7 @@ class CandidateAPIDataSource {
     
     // Description: Permet de changer le status de favoris du candidat (admin uniquement)
     func toggleFavoriteCandidatById(id: String) async throws -> Bool {
-        var request = URLRequest(url: URL(string: (vaporServerAdresse + "/candidate/\(id)/favorite"))!)
+        var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate/\(id)/favorite"))!)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = header
         

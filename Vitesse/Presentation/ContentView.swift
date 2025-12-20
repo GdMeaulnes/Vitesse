@@ -30,7 +30,7 @@ struct ContentView: View {
                 let vm = CandidateAPIDataSource()
                 
                 do {
-                    let list = try await vm.getCandidatById(id: "0EEA6692-C3D6-4D2B-A170-F88674F2F005")
+                    let list = try await vm.getCandidatById(id: "E96F7E52-23E1-4797-8D64-EA4A0D6DA71A")
                     print(list)
                 } catch {
                     print(error)
@@ -45,15 +45,15 @@ struct ContentView: View {
                 let vm = CandidateAPIDataSource()
                 
                 do {
-                    let newCandidat : NewOrUpdatedCandidateDTO = .init( firstName:  "candidat4Nom",
-                                                                        lastName:  "candidat4Prenom",
-                                                                        email :"candidat4@firm.com",
+                    let newCandidat : CandidateDTO = .init( firstName:  "candidat5Nom",
+                                                                        lastName:  "candidat5Prenom",
+                                                                        email :"candidat5@firm.com",
                                                                         phone:  "+33123456789",
                                                                         linkedinURL: "https://lienLinkedId.com",
                                                                         note :"Ceci est une note candidat")
                         
                     
-                    let verdict = try await vm.postNewCandidate(candidat: newCandidat)
+                    let verdict = try await vm.postNewCandidate(candidate: newCandidat)
                     print(verdict)
                 } catch {
                     print(error)
@@ -68,10 +68,15 @@ struct ContentView: View {
                 let vm = CandidateAPIDataSource()
                 
                 do {
-                    var candidatMaj = try await vm.getCandidatById(id: "A8C1D08B-D5E4-4331-A340-7061E45744D2")
-                    candidatMaj.note = "N'importe quoi"
+                    let candidateForUpdate = try await vm.getCandidatById(id: "E96F7E52-23E1-4797-8D64-EA4A0D6DA71A")
+                    let updatedCandidat : CandidateDTO = .init( firstName:  candidateForUpdate.candidate.firstName,
+                                                                lastName:  candidateForUpdate.candidate.lastName,
+                                                                email :candidateForUpdate.candidate.email,
+                                                                phone:  candidateForUpdate.candidate.phone,
+                                                                linkedinURL: candidateForUpdate.candidate.linkedinURL,
+                                                                note :"note")
                     
-                    let verdict = try await vm.updateCandidateById(candidat: candidatMaj)
+                    let verdict = try await vm.updateCandidateById(id: "E96F7E52-23E1-4797-8D64-EA4A0D6DA71A", candidate: updatedCandidat)
                     print(verdict)
                 } catch {
                     print(error)
