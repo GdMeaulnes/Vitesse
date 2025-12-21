@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		79DE1B042EF6CF6700814055 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 79DE1AF72EF6CF6700814055 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		79853A1F2EF1B37E0039C41C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		79853A112EF1B37D0039C41C /* Vitesse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vitesse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79853A1E2EF1B37E0039C41C /* VitesseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VitesseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79853A282EF1B37E0039C41C /* VitesseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VitesseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79DE1AF72EF6CF6700814055 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -105,6 +110,7 @@
 		79853A082EF1B37D0039C41C = {
 			isa = PBXGroup;
 			children = (
+				79DE1AF72EF6CF6700814055 /* .gitignore */,
 				791498452EF5729900886F37 /* Config */,
 				79853A132EF1B37D0039C41C /* Vitesse */,
 				79853A212EF1B37E0039C41C /* VitesseTests */,
@@ -244,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79DE1B042EF6CF6700814055 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

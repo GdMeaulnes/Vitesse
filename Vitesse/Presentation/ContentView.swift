@@ -13,10 +13,10 @@ struct ContentView: View {
     var body: some View {
         Button {
             Task {
-                let vm = CandidateAPIDataSource()
+                let vm = GetAllFavoriteCandidateUseCase()
                 
                 do {
-                    let list = try await vm.getAllCandidats()
+                    let list = try await vm.execute()
                     print(list)
                 } catch {
                     print(error)
