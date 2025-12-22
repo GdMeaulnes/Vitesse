@@ -9,14 +9,27 @@ import Foundation
 
 class UserMapper {
     
-   static func map(userDTO: UserDTO, tokenDTO: TokenDTO) -> User {
+   static func map2User(userDTO: UserDTO) -> User {
         
         return User(
             email: userDTO.email,
             password: userDTO.password,
             firstName: userDTO.firstName,
-            lastName: userDTO.lastName,
-            accessToken: tokenDTO.accessToken,
-            isAdmin: tokenDTO.isAdmin)
+            lastName: userDTO.lastName)
+    }
+    
+    static func map2DTO(user: User) -> UserDTO {
+        
+        return UserDTO(
+            email: user.email,
+            password: user.password,
+            firstName: user.firstName,
+            lastName: user.lastName)
+    }
+        
+    static func map2IdDO(credentials: Credentials) -> IdDTO {
+        return IdDTO(email : credentials.email,
+                     password: credentials.password)
+        
     }
 }

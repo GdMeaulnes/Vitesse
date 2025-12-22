@@ -21,6 +21,13 @@ struct UserDTO: Codable {
     let lastName: String
 }
 
+// Structure pour le logging Utilisateur
+struct IdDTO: Codable {
+    let email: String
+    let password: String
+}
+
+// Caractéristiques du User loggé
 struct TokenDTO: Codable {
     let accessToken: String
     let isAdmin: Bool

@@ -12,6 +12,14 @@ struct User {
     let password: String
     let firstName: String
     let lastName: String
+}
+
+struct Credentials: Encodable {
+    let email: String
+    let password: String
+}
+
+struct LoggedUser {
     let accessToken: String
     let isAdmin: Bool
 }

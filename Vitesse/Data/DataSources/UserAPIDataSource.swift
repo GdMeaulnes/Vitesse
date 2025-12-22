@@ -26,12 +26,14 @@ class UserAPIDataSource {
         return true
     }
     
+    
+    // MARK: A modifier pour un login général
     // Description: Permet de s'authentifier dans l'API et de générer un token pour utliser l'API
-    func login(admin: UserDTO) async throws -> TokenDTO {
+    func login(client: IdDTO) async throws -> TokenDTO {
         
         var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/user/auth"))!)
         request.httpMethod = "POST"
-        request.httpBody = try JSONEncoder().encode(admin)
+        request.httpBody = try JSONEncoder().encode(client)
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
