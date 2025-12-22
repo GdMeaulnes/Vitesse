@@ -23,10 +23,15 @@ class UserRepository {
         
     }
     
-    func login(credentials: Credentials) async throws -> TokenDTO  {
+    func login(credentials: Credentials) async throws -> LoggedInUser  {
         do {
-            let client = UserMapper.map2IdDO(credentials: credentials)
-            return try await userDTO.login(client: client)
+            let idDTO = UserMapper.map2IdDO(credentials: credentials)
+            let token = try await userDTO.login(client: idDTO)
+            let loggedUser = UserMapper.map2LoggedInUser(token: token)
+            return loggedUser
+        }
+        catch {
+            throw error
         }
     }
 }

@@ -19,7 +19,7 @@ struct Credentials: Encodable {
     let password: String
 }
 
-struct LoggedUser {
+struct LoggedInUser {
     let accessToken: String
     let isAdmin: Bool
 }

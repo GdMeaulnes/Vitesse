@@ -32,4 +32,15 @@ class UserMapper {
                      password: credentials.password)
         
     }
+    
+    static func map2Credentials(idDTO: IdDTO) -> Credentials {
+        return Credentials(email: idDTO.email,
+                           password: idDTO.password)
+    }
+    
+    static func map2LoggedInUser(token: TokenDTO) -> LoggedInUser {
+        return LoggedInUser(accessToken: token.accessToken,
+                            isAdmin: token.isAdmin)
+        
+    }
 }

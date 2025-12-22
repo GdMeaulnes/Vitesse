@@ -10,9 +10,9 @@ class LogUserUseCase {
     
     let userRepository = UserRepository()
     
-    func execute(crdetials: Credentials) async throws-> Bool {
+    func execute(credentials: Credentials) async throws ->  LoggedInUser {
         
-        return try await userRepository.login(credentials: Credentials)
+        return try await userRepository.login(credentials: credentials)
     }
     
 }

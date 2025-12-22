@@ -29,8 +29,13 @@ struct IdDTO: Codable {
 
 // Caractéristiques du User loggé
 struct TokenDTO: Codable {
+
     let accessToken: String
     let isAdmin: Bool
-}
 
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "token"
+        case isAdmin = "isAdmin"
+    }
+}
 
