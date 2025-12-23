@@ -6,3 +6,52 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
+
+@MainActor
+final class LoginViewModel: ObservableObject {
+
+    @Published var credential = Credentials(email: "", password: "")
+    @Published var currentUser = LoggedInUser(accessToken: "", isAdmin: false)
+
+    @Published var isLoading: Bool = false
+    @Published var isPasswordVisible: Bool = false
+    @Published var errorMessage: String?
+    
+    let logUserUseCase = LogUserUseCase()
+
+    var isFormValid: Bool {
+        !credential.email.isEmpty && !credential.password.isEmpty
+    }
+
+//    func signIn() async {
+//        guard isFormValid else {
+//            errorMessage = "Login ou mot de passe invalide"
+//            return
+//        }
+//
+//        isLoading = true
+//        errorMessage = nil
+//
+//        // Simulation appel réseau
+//        try? await Task.sleep(nanoseconds: 1_000_000_000)
+//
+//        isLoading = false
+//        print("User signed in")
+//    }
+    func signIn() async {
+        do {
+            isLoading = true
+            currentUser = try await logUserUseCase.execute(credentials: credential)
+            errorMessage = nil
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        isLoading = false
+    }
+
+    func register() {
+        print("Navigate to register")
+    }
+}

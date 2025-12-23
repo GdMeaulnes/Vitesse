@@ -8,15 +8,15 @@
 import Foundation
 
 struct User {
-    let email: String
-    let password: String
-    let firstName: String
-    let lastName: String
+    var email: String
+    var password: String
+    var firstName: String
+    var lastName: String
 }
 
 struct Credentials: Encodable {
-    let email: String
-    let password: String
+    var email: String
+    var password: String
 }
 
 struct LoggedInUser {

@@ -7,12 +7,44 @@
 
 import SwiftUI
 
-struct ViewHelper: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+struct AuthTextField: View {
 
-#Preview {
-    ViewHelper()
+    let systemImage: String
+    let placeholder: String
+    @Binding var text: String
+    var isSecure: Bool = false
+    @Binding var isPasswordVisible: Bool
+
+    var body: some View {
+        HStack {
+            Image(systemName: systemImage)
+                .foregroundColor(.gray)
+
+            if isSecure && !isPasswordVisible {
+                SecureField(placeholder, text: $text)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            } else {
+                TextField(placeholder, text: $text)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            }
+
+            if isSecure {
+                Button {
+                    isPasswordVisible.toggle()
+                } label: {
+                    Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color(.separator), lineWidth: 0.5)
+        )
+    }
 }
