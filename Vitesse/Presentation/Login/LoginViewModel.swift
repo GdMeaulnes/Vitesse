@@ -25,21 +25,6 @@ final class LoginViewModel: ObservableObject {
         !credential.email.isEmpty && !credential.password.isEmpty
     }
 
-//    func signIn() async {
-//        guard isFormValid else {
-//            errorMessage = "Login ou mot de passe invalide"
-//            return
-//        }
-//
-//        isLoading = true
-//        errorMessage = nil
-//
-//        // Simulation appel réseau
-//        try? await Task.sleep(nanoseconds: 1_000_000_000)
-//
-//        isLoading = false
-//        print("User signed in")
-//    }
     func signIn() async {
         do {
             isLoading = true

@@ -95,20 +95,6 @@ struct LoginView: View {
         .padding()
         .background(Color(.systemGroupedBackground))
     }
-    
-
-    // Développement des raccourcis pour les fonctions
-//    private func signIn() async {
-//        do {
-//            viewModel.isLoading = true
-//            viewModel.currentUser = try await logUserUseCase.execute(credentials: viewModel.credential)
-//            viewModel.errorMessage = nil
-//        } catch {
-//            viewModel.errorMessage = error.localizedDescription
-//        }
-//        viewModel.isLoading = false
-//    }
-    
 }
 
 
