@@ -10,22 +10,18 @@ struct RegisterView: View {
     
     @StateObject private var viewModel = RegisterViewModel()
     
-    let userRegisterUseCase = UserRegisterUseCase()
-    
     @State private var confirmPassword = ""
     
     var body: some View {
         VStack {
             Spacer()
             
-            // 🔹 Logo
             Image("VitesseLogo")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 80)
                 .padding(.bottom, 30)
             
-            // 🔹 Carte
             VStack(spacing: 40) {
                 
                 Text("Register")
@@ -38,7 +34,7 @@ struct RegisterView: View {
                         placeholder: "First Name",
                         text: $viewModel.newUser.firstName,
                         isSecure: false,
-                        isPasswordVisible: .constant(false)
+                        isValueVisible: .constant(false)
                     )
                     
                     AuthTextField(
@@ -46,7 +42,7 @@ struct RegisterView: View {
                         placeholder: "Last Name",
                         text: $viewModel.newUser.lastName,
                         isSecure: false,
-                        isPasswordVisible: .constant(false)
+                        isValueVisible: .constant(false)
                     )
                     
                     AuthTextField(
@@ -54,7 +50,7 @@ struct RegisterView: View {
                         placeholder: "Email",
                         text: $viewModel.newUser.email,
                         isSecure: false,
-                        isPasswordVisible: .constant(false)
+                        isValueVisible: .constant(false)
                     )
                     
                     AuthTextField(
@@ -62,7 +58,7 @@ struct RegisterView: View {
                         placeholder: "Password",
                         text: $viewModel.newUser.password,
                         isSecure: true,
-                        isPasswordVisible: $viewModel.isPasswordVisible
+                        isValueVisible: $viewModel.isPasswordVisible
                     )
                     
                     AuthTextField(
@@ -70,7 +66,7 @@ struct RegisterView: View {
                         placeholder: "Confirm Password",
                         text: $confirmPassword,
                         isSecure: true,
-                        isPasswordVisible: $viewModel.isPasswordVisible
+                        isValueVisible: $viewModel.isPasswordVisible
                     )
                 }
                 
@@ -83,7 +79,7 @@ struct RegisterView: View {
                 
                 Button {
                     Task {
-                        print("viewModel.register()")
+                        await viewModel.toRegister(newUser: viewModel.newUser)
                     }
                 } label: {
                     if viewModel.isLoading {

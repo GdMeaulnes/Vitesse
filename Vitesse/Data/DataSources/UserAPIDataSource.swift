@@ -17,6 +17,8 @@ class UserAPIDataSource {
         var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/user/register"))!)
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(newUser)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         let (_, response) = try await URLSession.shared.data(for: request)
         

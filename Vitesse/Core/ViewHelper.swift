@@ -13,14 +13,14 @@ struct AuthTextField: View {
     let placeholder: String
     @Binding var text: String
     var isSecure: Bool = false
-    @Binding var isPasswordVisible: Bool
+    @Binding var isValueVisible: Bool
 
     var body: some View {
         HStack {
             Image(systemName: systemImage)
                 .foregroundColor(.gray)
 
-            if isSecure && !isPasswordVisible {
+            if isSecure && !isValueVisible {
                 SecureField(placeholder, text: $text)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -32,9 +32,9 @@ struct AuthTextField: View {
 
             if isSecure {
                 Button {
-                    isPasswordVisible.toggle()
+                    isValueVisible.toggle()
                 } label: {
-                    Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
+                    Image(systemName: isValueVisible ? "eye.slash" : "eye")
                         .foregroundColor(.gray)
                 }
             }

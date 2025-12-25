@@ -50,8 +50,8 @@
             filePath = "Vitesse/Data/DataSources/UserAPIDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "login(client:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,92 +60,16 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D5C87D2C-C154-407E-ADC8-073D418AE681"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vitesse/Data/DataSources/UserAPIDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "login(client:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D5C87D2C-C154-407E-ADC8-073D418AE681 - 63b847f3c7d3fb4b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Vitesse.UserAPIDataSource.login(client: Vitesse.IdDTO) async throws -&gt; Vitesse.TokenDTO"
-                  moduleName = "Vitesse.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/richard/Documents/Documents%20-%20Jupiter/MatchAndPatch/Salariat/Richard/Formation/BootCampSwift/ProjetFinal/Vitesse/Vitesse/Data/DataSources/UserAPIDataSource.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40">
-               </Location>
-               <Location
-                  uuid = "D5C87D2C-C154-407E-ADC8-073D418AE681 - 246ca1e4ec77156e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for Vitesse.UserAPIDataSource.login(client: Vitesse.IdDTO) async throws -&gt; Vitesse.TokenDTO"
-                  moduleName = "Vitesse.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/richard/Documents/Documents%20-%20Jupiter/MatchAndPatch/Salariat/Richard/Formation/BootCampSwift/ProjetFinal/Vitesse/Vitesse/Data/DataSources/UserAPIDataSource.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40">
-               </Location>
-               <Location
-                  uuid = "D5C87D2C-C154-407E-ADC8-073D418AE681 - 23b3dcb94895dd48"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for Vitesse.UserAPIDataSource.login(client: Vitesse.IdDTO) async throws -&gt; Vitesse.TokenDTO"
-                  moduleName = "Vitesse.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/richard/Documents/Documents%20-%20Jupiter/MatchAndPatch/Salariat/Richard/Formation/BootCampSwift/ProjetFinal/Vitesse/Vitesse/Data/DataSources/UserAPIDataSource.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1D2F9FDD-E4AE-473D-9B92-1E0015022AAC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vitesse/Presentation/Login/LoginView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1232FEDB-B863-4D19-94EB-6A5E1B228BF3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vitesse/Presentation/Login/LoginView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "LoginView"
-            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
