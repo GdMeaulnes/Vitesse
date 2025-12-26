@@ -25,15 +25,18 @@ final class LoginViewModel: ObservableObject {
         !credential.email.isEmpty && !credential.password.isEmpty
     }
 
-    func signIn() async {
+    func signIn() async -> Bool {
+        isLoading = true
+        defer { isLoading = false }
+        
         do {
-            isLoading = true
             currentUser = try await logUserUseCase.execute(credentials: credential)
             errorMessage = nil
+            return true
         } catch {
-            errorMessage = error.localizedDescription
+            self.errorMessage = "Logging Error"
+            return false
         }
-        isLoading = false
     }
 
     func register() {

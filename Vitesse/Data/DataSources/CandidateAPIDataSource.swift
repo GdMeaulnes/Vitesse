@@ -38,6 +38,8 @@ class CandidateAPIDataSource {
         var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate/\(id)"))!)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = header
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         let (data, response) = try await URLSession.shared.data(for: request)
         

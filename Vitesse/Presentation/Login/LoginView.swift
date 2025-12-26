@@ -12,6 +12,8 @@ struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
     @State private var goToRegister = false
     
+    @Binding var isLoggedIn: Bool
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -58,7 +60,12 @@ struct LoginView: View {
                         
                         Button {
                             Task {
-                                await viewModel.signIn()
+                                let success = await viewModel.signIn()
+                                if success {
+                                    await MainActor.run {
+                                        isLoggedIn = true
+                                    }
+                                }
                             }
                         } label: {
                             if viewModel.isLoading {
@@ -104,5 +111,5 @@ struct LoginView: View {
 
 
 #Preview {
-    LoginView()
+    RootView()
 }
