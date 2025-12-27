@@ -12,6 +12,7 @@ struct CandidateListView: View {
     @StateObject private var viewModel = CandidatsViewModel()
 
     var body: some View {
+        ZStack {
 
             VStack(spacing: 12) {
 
@@ -20,7 +21,6 @@ struct CandidateListView: View {
                     Spacer()
 
                     Button {
-                        // viewModel.showFavoritesOnly.toggle()
                         viewModel.toggleFavorite()
                     } label: {
                         Image(systemName: viewModel.showFavoritesOnly ? "star.fill" : "star")
@@ -35,7 +35,7 @@ struct CandidateListView: View {
                 }
                 .padding(.horizontal)
 
-                // Liste
+                // Liste de cellules individuelles
                 ScrollView {
                     LazyVStack(spacing: 10) {
                         ForEach(viewModel.candidats) { candidate in
@@ -45,18 +45,27 @@ struct CandidateListView: View {
                     .padding(.horizontal)
                 }
             }
-            .navigationTitle("Candidats")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Edit") {
-                        // Navigation vers une autre vue (à implémenter plus tard)
-                    }
+
+            // Loader superposé
+            if viewModel.isLoading {
+                ProgressView("Chargement des candidats…")
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(12)
+            }
+        }
+        .navigationTitle("Candidats")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Edit") {
+                    // À implémenter
                 }
             }
-            .task {
-                await viewModel.fetchCandidats()
-            }
+        }
+        .task {
+            await viewModel.fetchCandidats()
+        }
     }
 }
 

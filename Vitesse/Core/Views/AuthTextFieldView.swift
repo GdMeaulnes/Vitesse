@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AuthTextField: View {
+struct AuthTextFieldView: View {
 
     let systemImage: String
     let placeholder: String

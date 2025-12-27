@@ -29,7 +29,7 @@ struct RegisterView: View {
                     .fontWeight(.semibold)
                 
                 VStack(spacing: 15) {
-                    AuthTextField(
+                    AuthTextFieldView(
                         systemImage: "person",
                         placeholder: "First Name",
                         text: $viewModel.newUser.firstName,
@@ -37,7 +37,7 @@ struct RegisterView: View {
                         isValueVisible: .constant(false)
                     )
                     
-                    AuthTextField(
+                    AuthTextFieldView(
                         systemImage: "person",
                         placeholder: "Last Name",
                         text: $viewModel.newUser.lastName,
@@ -45,7 +45,7 @@ struct RegisterView: View {
                         isValueVisible: .constant(false)
                     )
                     
-                    AuthTextField(
+                    AuthTextFieldView(
                         systemImage: "envelope",
                         placeholder: "Email",
                         text: $viewModel.newUser.email,
@@ -53,7 +53,7 @@ struct RegisterView: View {
                         isValueVisible: .constant(false)
                     )
                     
-                    AuthTextField(
+                    AuthTextFieldView(
                         systemImage: "lock",
                         placeholder: "Password",
                         text: $viewModel.newUser.password,
@@ -61,7 +61,7 @@ struct RegisterView: View {
                         isValueVisible: $viewModel.isPasswordVisible
                     )
                     
-                    AuthTextField(
+                    AuthTextFieldView(
                         systemImage: "lock",
                         placeholder: "Confirm Password",
                         text: $confirmPassword,

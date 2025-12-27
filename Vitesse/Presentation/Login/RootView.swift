@@ -14,7 +14,6 @@ struct RootView: View {
     var body: some View {
         NavigationStack {
             if isLoggedIn {
-                // Text("OK logged in")
                 CandidateListView()
             } else {
                 LoginView(isLoggedIn: $isLoggedIn)

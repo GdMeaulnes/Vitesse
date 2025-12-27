@@ -17,11 +17,9 @@ final class CandidatsViewModel: ObservableObject {
     @Published var isPasswordVisible: Bool = false
     @Published var errorMessage: String?
     
-    @Published var showFavoritesOnly: Bool = false
+    @Published var showFavoritesOnly: Bool = true
     
     private var candidatsLoaded : [Candidate] = []
-    // filteredCandidates: [Candidate] = []
-    // private var favoritecandidats: [Candidate] = []
 
     let getAllCandidateUseCase = GetAllCandidateUseCase()
     
@@ -33,36 +31,9 @@ final class CandidatsViewModel: ObservableObject {
         } catch {
             errorMessage = "Une erreur s'est produite"
         }
+        toggleFavorite()
         isLoading = false
     }
-    /*
-    func favoriteCandidats() {
-        for candidat in candidatsLoaded {
-            if candidat.isFavorite == true {
-                favoritecandidats.append(candidat)
-            }
-        }
-
-        candidats = candidatsLoaded.compactMap { $0.isFavorite == true }
-    }
-    
-    func showAllCandidats() {
-        candidats = candidatsLoaded
-    }
-    
-    func showFavoriteCandidats() {
-        candidats = favoritecandidats
-    }
-    
-    private func applyFilter() {
-        if showFavoritesOnly {
-            showFavoriteCandidats()
-        } else {
-            showAllCandidats()
-        }
-    }*/
-    
-    //
     
     func toggleFavorite() {
          showFavoritesOnly.toggle()

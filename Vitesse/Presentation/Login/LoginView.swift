@@ -32,7 +32,7 @@ struct LoginView: View {
                         .fontWeight(.semibold)
                     
                     VStack(spacing: 15) {
-                        AuthTextField(
+                        AuthTextFieldView(
                             systemImage: "envelope",
                             placeholder: "Email",
                             text: $viewModel.credential.email,
@@ -40,7 +40,7 @@ struct LoginView: View {
                             isValueVisible: .constant(false)
                         )
                         
-                        AuthTextField(
+                        AuthTextFieldView(
                             systemImage: "lock",
                             placeholder: "Password",
                             text: $viewModel.credential.password,
