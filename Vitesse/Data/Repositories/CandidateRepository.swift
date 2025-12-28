@@ -28,4 +28,15 @@ class CandidateRepository {
                 throw error
             }
         }
+    
+    func deleteOneCandidate(id:String) async throws -> Bool {
+        
+        do {
+            let result = try await candidateDataBaseDTO.deleteCandidatById(id: id)
+            return result
+        }
+        catch {
+            throw error
+        }
+    }
 }
