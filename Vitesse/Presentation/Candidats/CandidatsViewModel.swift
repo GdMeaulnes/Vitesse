@@ -18,7 +18,7 @@ final class CandidatsViewModel: ObservableObject {
     @Published var isEditing: Bool = false
     @Published var selectedCandidateIDs: Set<String> = []
     
-    @Published var showFavoritesOnly: Bool = true
+    @Published var showFavoritesOnly: Bool = false
     @Published var searchText: String = ""
     
     private var candidatsLoaded : [Candidate] = []

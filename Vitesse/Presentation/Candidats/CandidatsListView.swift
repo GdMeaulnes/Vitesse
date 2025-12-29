@@ -13,17 +13,25 @@ struct CandidateListView: View {
     
     var body: some View {
         ZStack {
+            
             VStack(spacing: 12) {
+                
+                SearchBarView(text: $viewModel.searchText)
                 
                 // Liste de cellules individuelles
                 ScrollView {
                     LazyVStack(spacing: 10) {
                         ForEach(viewModel.candidats) { candidate in
-                            CandidateRowView(
-                                candidate: candidate,
-                                isEditing: viewModel.isEditing,
-                                isSelected: viewModel.selectedCandidateIDs.contains(candidate.id)
-                            )
+                            NavigationLink {
+                                CandidateDetailView(candidate: candidate)
+                            } label: {
+                                CandidateRowView(
+                                    candidate: candidate,
+                                    isEditing: viewModel.isEditing,
+                                    isSelected: viewModel.selectedCandidateIDs.contains(candidate.id)
+                                )
+                            }
+                            .disabled(viewModel.isEditing) 
                             .onTapGesture {
                                 if viewModel.isEditing {
                                     viewModel.toggleSelection(for: candidate)
@@ -31,8 +39,8 @@ struct CandidateListView: View {
                             }
                         }
                     }
-                    .padding(.horizontal)
                 }
+                .padding(.horizontal)
             }
             
             // Loader superposé
@@ -46,18 +54,19 @@ struct CandidateListView: View {
         .navigationTitle("Candidats")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            
             ToolbarItem(placement: .navigationBarLeading) {
                 if viewModel.isEditing {
                     Button("Cancel") {
                         viewModel.cancelEditing()
                     }
                 } else {
-                        Button("Edit") {
-                            viewModel.isEditing = true
-                        }
+                    Button("Edit") {
+                        viewModel.isEditing = true
                     }
                 }
-
+            }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 if viewModel.isEditing {
                     Button("Delete") {
@@ -75,24 +84,21 @@ struct CandidateListView: View {
                             .foregroundColor(viewModel.showFavoritesOnly ? .yellow : .primary)
                     }
                 }
-
             }
         }
-        .searchable(
-            text: $viewModel.searchText,
-            placement: .navigationBarDrawer(displayMode: .automatic),
-            prompt: "Search"
-        )
+//        .searchable(
+//            text: $viewModel.searchText,
+//            placement: .navigationBarDrawer(displayMode: .automatic),
+//            prompt: "Search"
+//        )
         .task {
             await viewModel.fetchCandidats()
         }
     }
 }
 
-#Preview("Liste complète") {
-    NavigationStack {
-        CandidateListView()
-    }
-}
 
+#Preview("Liste complète") {
+        CandidateListView()
+}
 

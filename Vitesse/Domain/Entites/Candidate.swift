@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Candidate :Identifiable {
-    let id: String
-    let isFavorite: Bool
-    let firstName: String
-    let lastName: String
-    let email: String
-    let phone: String
-    let linkedinURL: String
-    let note: String
+struct Candidate :Identifiable, Hashable {
+    var id: String
+    var isFavorite: Bool
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String
+    var linkedinURL: String
+    var note: String
 }
 
 let sampleCandidate1: Candidate = .init(
