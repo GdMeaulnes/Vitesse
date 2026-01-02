@@ -19,7 +19,7 @@ class CandidateRepository {
             var allCandidats : [Candidate] = []
             
             for candidatDTO in candidatListDTO {
-                let newCandidat = CandidateMapper.map(candidateDataBaseDTO: candidatDTO)
+                let newCandidat = CandidateMapper.map2Candidate(candidateDataBaseDTO: candidatDTO)
                 allCandidats.append(newCandidat)
             }
             return allCandidats
@@ -33,6 +33,17 @@ class CandidateRepository {
         
         do {
             let result = try await candidateDataBaseDTO.deleteCandidatById(id: id)
+            return result
+        }
+        catch {
+            throw error
+        }
+    }
+    
+    func toggleFavoriteCandidateStatus(id:String) async throws -> Bool {
+        
+        do {
+            let result = try await candidateDataBaseDTO.toggleFavoriteCandidatById(id: id)
             return result
         }
         catch {

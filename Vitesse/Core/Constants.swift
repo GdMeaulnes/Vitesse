@@ -7,9 +7,10 @@
 
 import Foundation
 
+/*
 // https://stackoverflow.com/questions/3132105/how-do-you-access-a-website-running-on-localhost-from-iphone-browser
 // https://www.joshwcomeau.com/blog/local-testing-on-an-iphone/
-// http://192.168.0.102:4484
+// http://192.168.0.102:4484 */
 
 // Regarder comment intégrer un fichier .env
 let header = ["authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQHZpdGVzc2UuY29tIiwiaXNBZG1pbiI6dHJ1ZX0.66y2jHqt-w3dQgc-W9sHMBhDN7BIHOq8X7IL3H--NzY"]

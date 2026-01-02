@@ -15,7 +15,7 @@ struct AuthTextAreaView: View {
     let placeholder: String
     @Binding var text: String
     
-    var maxCharacters: Int = 500
+    var maxCharacters: Int = 300
     var isEditable: Bool = true
     
     @FocusState private var isFocused: Bool
@@ -49,7 +49,7 @@ struct AuthTextAreaView: View {
                 TextEditor(text: $text)
                     .focused($isFocused)
                     .disabled(!isEditable)
-                    .frame(minHeight: 140)
+                    .frame(minHeight: 120)
                     .padding(8)
                     .background(
                         RoundedRectangle(cornerRadius: 10)

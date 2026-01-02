@@ -9,14 +9,14 @@ import SwiftUI
 
 struct RootView: View {
 
-    @State private var isLoggedIn = false
+    @EnvironmentObject private var sessionManager: SessionManager
 
     var body: some View {
         NavigationStack {
-            if isLoggedIn {
+            if sessionManager.isLoggedIn {
                 CandidateListView()
             } else {
-                LoginView(isLoggedIn: $isLoggedIn)
+                LoginView(sessionManager: sessionManager)
             }
         }
     }
@@ -24,4 +24,5 @@ struct RootView: View {
 
 #Preview {
     RootView()
+        .environmentObject(SessionManager())
 }

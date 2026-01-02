@@ -27,7 +27,7 @@ class UserMapper {
             lastName: user.lastName)
     }
         
-    static func map2IdDO(credentials: Credentials) -> IdDTO {
+    static func map2IdDTO(credentials: Credentials) -> IdDTO {
         return IdDTO(email : credentials.email,
                      password: credentials.password)
         

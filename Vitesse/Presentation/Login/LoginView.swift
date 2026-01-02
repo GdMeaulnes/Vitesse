@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct LoginView: View {
+
+    @EnvironmentObject private var sessionManager: SessionManager
+    @StateObject private var viewModel: LoginViewModel
+
+    init(sessionManager: SessionManager) {
+        _viewModel = StateObject(
+            wrappedValue: LoginViewModel(sessionManager: sessionManager)
+        )
+    }
+
     
-    @StateObject private var viewModel = LoginViewModel()
     @State private var goToRegister = false
     
-    @Binding var isLoggedIn: Bool
+    // @Binding var isLoggedIn: Bool
     
     var body: some View {
         NavigationStack {
@@ -63,7 +72,7 @@ struct LoginView: View {
                                 let success = await viewModel.signIn()
                                 if success {
                                     await MainActor.run {
-                                        isLoggedIn = true
+                                        // isLoggedIn = true
                                     }
                                 }
                             }
@@ -112,4 +121,5 @@ struct LoginView: View {
 
 #Preview {
     RootView()
+        .environmentObject(SessionManager())
 }

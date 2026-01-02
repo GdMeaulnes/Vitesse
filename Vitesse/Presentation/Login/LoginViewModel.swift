@@ -19,7 +19,15 @@ final class LoginViewModel: ObservableObject {
     @Published var isPasswordVisible: Bool = false
     @Published var errorMessage: String?
     
+    private let sessionManager: SessionManager
+    init(
+        sessionManager: SessionManager,
+    ) {
+        self.sessionManager = sessionManager
+    }
+    
     let logUserUseCase = LogUserUseCase()
+    
 
     var isFormValid: Bool {
         !credential.email.isEmpty && !credential.password.isEmpty
@@ -32,6 +40,8 @@ final class LoginViewModel: ObservableObject {
         do {
             currentUser = try await logUserUseCase.execute(credentials: credential)
             errorMessage = nil
+            sessionManager.startSession(accessToken: currentUser.accessToken, isAdmin: currentUser.isAdmin)
+            
             return true
         } catch {
             self.errorMessage = "Logging Error"

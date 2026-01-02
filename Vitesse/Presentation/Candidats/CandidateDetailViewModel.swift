@@ -11,6 +11,8 @@ import SwiftUI
 
 final class CandidateDetailViewModel: ObservableObject {
     
+    let toggleFavoriteStatusUseCase = ToggleFavoriteStatusUseCase()
+    
     @Published var candidate: Candidate
     @Published var editableCandidate: Candidate
     
@@ -35,6 +37,20 @@ final class CandidateDetailViewModel: ObservableObject {
         candidate = editableCandidate
         isEditing = false
         // 👉 ici plus tard : sauvegarde DB / API
+    }
+    
+    func toggleFavorite(isAdmin: Bool) async {
+        guard isAdmin else { return }
+
+        let newValue = !candidate.isFavorite
+
+        do {
+            try await toggleFavoriteStatusUseCase.execute(id: candidate.id)
+                candidate.isFavorite = newValue          
+        } catch {
+            // Option : afficher une alerte
+            print("Erreur MAJ favori :", error)
+        }
     }
 }
 

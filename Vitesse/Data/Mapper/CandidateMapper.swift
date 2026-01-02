@@ -9,7 +9,7 @@ import Foundation
 
 class CandidateMapper {
     
-    static func map(candidateDataBaseDTO : CandidateDataBaseDTO) -> Candidate {
+    static func map2Candidate(candidateDataBaseDTO : CandidateDataBaseDTO) -> Candidate {
         return Candidate(
             id: candidateDataBaseDTO.id,
             isFavorite: candidateDataBaseDTO.isFavorite,

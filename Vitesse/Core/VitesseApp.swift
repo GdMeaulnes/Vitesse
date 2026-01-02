@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct VitesseApp: App {
+    @StateObject private var sessionManager = SessionManager()
+    
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environmentObject(sessionManager)
         }
     }
 }

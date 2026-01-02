@@ -10,6 +10,9 @@ import SwiftUI
 struct CandidateDetailView: View {
     
     @StateObject private var viewModel: CandidateDetailViewModel
+    @State private var showNotAuthorizedAlert = false
+    
+    @EnvironmentObject private var sessionManager: SessionManager
     
     // Initialisation depuis la liste
     init(candidate: Candidate) {
@@ -37,10 +40,22 @@ struct CandidateDetailView: View {
                 
                 Spacer()
                 
-                // Favori toujours visible
-                Image(systemName: viewModel.candidate.isFavorite ? "star.fill" : "star")
-                    .foregroundColor(viewModel.candidate.isFavorite ? .yellow : .gray)
-                    .font(.system(size: 18))
+                Button {
+                    if sessionManager.isAdmin {
+                        Task {
+                            await viewModel.toggleFavorite(isAdmin: true)
+                        }
+                    } else {
+                        showNotAuthorizedAlert = true
+                    }
+                } label: {
+                    Image(systemName: viewModel.candidate.isFavorite ? "star.fill" : "star")
+                        .foregroundColor(
+                            viewModel.candidate.isFavorite ? .yellow : .gray
+                        )
+                        .font(.system(size: 18))
+                }
+                .opacity(sessionManager.isAdmin ? 1.0 : 0.2)
                 
             }
             .padding()
@@ -49,8 +64,8 @@ struct CandidateDetailView: View {
                 systemImage: "phone",
                 placeholder: "Phone",
                 text: viewModel.isEditing
-                        ? $viewModel.editableCandidate.phone
-                        : .constant(viewModel.candidate.phone),
+                ? $viewModel.editableCandidate.phone
+                : .constant(viewModel.candidate.phone),
                 isSecure: false,
                 isValueVisible: .constant(false)
             )
@@ -59,8 +74,8 @@ struct CandidateDetailView: View {
                 systemImage: "envelope",
                 placeholder: "Email",
                 text: viewModel.isEditing
-                        ? $viewModel.editableCandidate.email
-                        : .constant(viewModel.candidate.email),
+                ? $viewModel.editableCandidate.email
+                : .constant(viewModel.candidate.email),
                 isSecure: false,
                 isValueVisible: .constant(false)
             )
@@ -69,8 +84,8 @@ struct CandidateDetailView: View {
                 systemImage: "link",
                 placeholder: "LinkedIn",
                 text: viewModel.isEditing
-                        ? $viewModel.editableCandidate.linkedinURL
-                        : .constant(viewModel.candidate.linkedinURL),
+                ? $viewModel.editableCandidate.linkedinURL
+                : .constant(viewModel.candidate.linkedinURL),
                 isSecure: false,
                 isValueVisible: .constant(false)
             )
@@ -79,9 +94,9 @@ struct CandidateDetailView: View {
                 systemImage: "text.page",
                 placeholder: "",
                 text: viewModel.isEditing
-                        ? $viewModel.editableCandidate.note
-                        : .constant(viewModel.candidate.note),
-                maxCharacters: 500,
+                ? $viewModel.editableCandidate.note
+                : .constant(viewModel.candidate.note),
+                maxCharacters: 300,
                 isEditable: viewModel.isEditing
             )
         }
@@ -93,7 +108,7 @@ struct CandidateDetailView: View {
                     }
                 }
             }
-
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 if viewModel.isEditing {
                     Button("Done") {
@@ -107,17 +122,39 @@ struct CandidateDetailView: View {
                 }
             }
         }
+        .alert("Action non autorisée", isPresented: $showNotAuthorizedAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Seuls les administrateurs peuvent modifier le statut favori d’un candidat.")
+        }
     }
 }
 
-#Preview ("Favori") {
+#Preview("Favori - User Non Admin") {
     NavigationStack {
         CandidateDetailView(candidate: sampleCandidate1)
+            .environmentObject({
+                let session = SessionManager()
+                session.startSession(
+                    accessToken: "preview-token",
+                    isAdmin: false
+                )
+                return session
+            }())
     }
 }
 
-#Preview("Non favori") {
+#Preview("Favori - User Admin") {
     NavigationStack {
-        CandidateDetailView(candidate: sampleCandidate2)
+        CandidateDetailView(candidate: sampleCandidate1)
+            .environmentObject({
+                let session = SessionManager()
+                session.startSession(
+                    accessToken: "preview-token",
+                    isAdmin: true
+                )
+                return session
+            }())
     }
 }
+
