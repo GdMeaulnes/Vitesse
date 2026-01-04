@@ -1,10 +1,11 @@
 //
-//  CheckRemoteSIte.swift
+//  SessionManager.swift
 //  Vitesse
 //
 //  Created by Richard DOUXAMI on 17/12/2025.
 //
-
+// Permet de mémoriser les données de retour du login user et de les rendre accesible dans toute l'App.
+//
 import Foundation
 import Combine
 
@@ -14,23 +15,18 @@ enum RemoteSiteError: Error {
 
 import Foundation
 
-// Instruments : https://developer.apple.com/tutorials/instruments
+
 @MainActor
 final class SessionManager: ObservableObject {
 
-    // MARK: - Données de session
-
+    // Données mémorisées
     @Published private(set) var accessToken: String?
     @Published private(set) var isAdmin: Bool = false
-
-    // MARK: - État dérivé
 
     var isLoggedIn: Bool {
         accessToken != nil
     }
-
-    // MARK: - API publique
-
+    
     func startSession(accessToken: String, isAdmin: Bool) {
         self.accessToken = accessToken
         self.isAdmin = isAdmin

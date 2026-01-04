@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Classe permettant le passage des DTO aux Entités
 class CandidateMapper {
     
     static func mapToCandidate(candidateDataBaseDTO : CandidateDataBaseDTO) -> Candidate {

@@ -23,6 +23,11 @@ final class CandidatsViewModel: ObservableObject {
     
     private var candidatsLoaded : [Candidate] = []
     
+    // Liste à afficher :
+    // • Complète
+    // • Filtrer sur "Favoris"
+    // • Filtrer sur nom et/ou prénonm
+    // • Combinaison
     var candidats : [Candidate] {
         candidatsLoaded.filter { candidat in
 
@@ -45,8 +50,8 @@ final class CandidatsViewModel: ObservableObject {
             }
     }
 
+    // Les Uses Cases de l'Écran de liste des Candidats (Paragraphe 3 des specs)
     let getAllCandidateUseCase = GetAllCandidateUseCase()
-    
     let deleteCandidateUseCase = DeleteOneCandidateUseCase()
     
     func fetchCandidats() async {

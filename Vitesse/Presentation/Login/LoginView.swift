@@ -18,11 +18,8 @@ struct LoginView: View {
         )
     }
 
-    
     @State private var goToRegister = false
-    
-    // @Binding var isLoggedIn: Bool
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -72,7 +69,6 @@ struct LoginView: View {
                                 let success = await viewModel.signIn()
                                 if success {
                                     await MainActor.run {
-                                        // isLoggedIn = true
                                     }
                                 }
                             }

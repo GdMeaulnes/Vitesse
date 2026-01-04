@@ -11,10 +11,9 @@ import SwiftUI
 
 final class CandidateDetailViewModel: ObservableObject {
     
+    // Les Uses Cases de l'Écran de profil du candidat (Paragraphe 4 des specs)
     let toggleFavoriteStatusUseCase = ToggleFavoriteStatusUseCase()
-    
     let updateOneCandidateUseCase = UpdateOneCandidateUseCase()
-    
     let getAllCandidateUseCase = GetAllCandidateUseCase()
     
     @Published var candidate: Candidate

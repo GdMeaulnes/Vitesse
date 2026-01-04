@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Structure "Métier" de l'App pour les candidats
 struct Candidate :Identifiable, Hashable {
     var id: String
     var isFavorite: Bool

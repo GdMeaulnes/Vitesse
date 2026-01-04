@@ -12,6 +12,7 @@ struct CandidateDetailView: View {
     @StateObject private var viewModel: CandidateDetailViewModel
     @State private var showNotAuthorizedAlert = false
     
+    // Récupération des caractèristique du user
     @EnvironmentObject private var sessionManager: SessionManager
     
     // Initialisation depuis la liste
@@ -24,7 +25,6 @@ struct CandidateDetailView: View {
     var body: some View {
         
         VStack {
-            
             Image("VitesseLogo")
                 .resizable()
                 .scaledToFit()
@@ -32,12 +32,11 @@ struct CandidateDetailView: View {
                 .padding(.bottom, 30)
             
             HStack {
+                
+                // Présentation spécifique poue l'édition Nom et Prénom
                 VStack(alignment: .leading, spacing: 6) {
-                    
                     if viewModel.isEditing {
-                        
                         VStack(spacing: 8) {
-                            
                             TextField(
                                 "Prénom",
                                 text: $viewModel.editableCandidate.firstName
@@ -52,18 +51,16 @@ struct CandidateDetailView: View {
                             .font(.title2)
                             .textFieldStyle(.roundedBorder)
                         }
-                        
                     } else {
-                        
                         Text("\(viewModel.candidate.firstName) \(viewModel.candidate.lastName)")
                             .font(.title)
                             .fontWeight(.semibold)
                     }
                 }
-                //}
                 
                 Spacer()
                 
+                // Changement du caractère Favori ou pas du candidat (Fonction du user admin ou pas)
                 Button {
                     if sessionManager.isAdmin {
                         Task {
@@ -84,6 +81,7 @@ struct CandidateDetailView: View {
         }
         .padding()
         
+        // Reste des champs en présentation classique
         AuthTextFieldView(
             systemImage: "phone",
             placeholder: "Phone",
@@ -173,7 +171,7 @@ struct CandidateDetailView: View {
 
 #Preview("Favori - User Admin") {
     NavigationStack {
-        CandidateDetailView(candidate: sampleCandidate1)
+        CandidateDetailView(candidate: sampleCandidate2)
             .environmentObject({
                 let session = SessionManager()
                 session.startSession(

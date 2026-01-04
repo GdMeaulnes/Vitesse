@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Communication entre Entités et DTOs pour les utilisateurs
 class UserRepository {
     
     let userDTO = UserAPIDataSource()

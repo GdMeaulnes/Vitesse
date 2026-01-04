@@ -30,7 +30,7 @@ struct CandidateRowView: View {
 
             Spacer()
 
-            // Favori toujours visible
+            // Symbole "Étoile" toujours visible en fonction de "Favori"
             Image(systemName: candidate.isFavorite ? "star.fill" : "star")
                 .foregroundColor(candidate.isFavorite ? .yellow : .gray)
                 .font(.system(size: 18))

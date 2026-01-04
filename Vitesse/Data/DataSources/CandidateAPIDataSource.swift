@@ -8,7 +8,7 @@
 import Foundation
 
 
-
+// Classe gérant les appels API concernant les Candidats. N'utilise que les DTO
 class CandidateAPIDataSource {
     
     // Description: Permet de récuperer la liste des candidats

@@ -11,6 +11,7 @@ import SwiftUI
 struct VitesseApp: App {
     @StateObject private var sessionManager = SessionManager()
     
+    // Lancement de l'App avec injection du sessionManager
     var body: some Scene {
         WindowGroup {
             RootView()

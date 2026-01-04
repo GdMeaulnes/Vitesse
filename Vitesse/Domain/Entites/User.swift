@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Structure "Métier" de l'App pour les utilisateurs
 struct User {
     var email: String
     var password: String

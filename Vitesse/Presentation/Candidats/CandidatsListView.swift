@@ -18,7 +18,7 @@ struct CandidateListView: View {
                 
                 SearchBarView(text: $viewModel.searchText)
                 
-                // Liste de cellules individuelles
+                // Liste de cellules individuelles (rowView)
                 ScrollView {
                     LazyVStack(spacing: 10) {
                         ForEach(viewModel.candidats) { candidate in
@@ -86,11 +86,6 @@ struct CandidateListView: View {
                 }
             }
         }
-//        .searchable(
-//            text: $viewModel.searchText,
-//            placement: .navigationBarDrawer(displayMode: .automatic),
-//            prompt: "Search"
-//        )
         .task {
             await viewModel.fetchCandidats()
         }

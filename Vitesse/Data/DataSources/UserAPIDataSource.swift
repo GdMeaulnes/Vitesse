@@ -8,7 +8,7 @@
 import Foundation
 
 
-
+// Classe gérant les appels API concernant les User. N'utilise que les DTO
 class UserAPIDataSource {
     
     // Description: Permet de créer un compte utilisateur dans l'API
@@ -29,7 +29,6 @@ class UserAPIDataSource {
     }
     
     
-    // MARK: A modifier pour un login général
     // Description: Permet de s'authentifier dans l'API et de générer un token pour utliser l'API
     func login(client: IdDTO) async throws -> TokenDTO {
         
