@@ -11,6 +11,11 @@ import Foundation
 // Classe gérant les appels API concernant les Candidats. N'utilise que les DTO
 class CandidateAPIDataSource {
     
+    private let session: URLSession
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
     // Description: Permet de récuperer la liste des candidats
     func getAllCandidats() async throws -> [CandidateDataBaseDTO] {
         var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate"))!)
@@ -18,7 +23,7 @@ class CandidateAPIDataSource {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = header
 
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await session.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             print(HTTPURLResponse.localizedString(forStatusCode: (response as? HTTPURLResponse)?.statusCode ?? 0))
@@ -41,7 +46,7 @@ class CandidateAPIDataSource {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             print(HTTPURLResponse.localizedString(forStatusCode: (response as? HTTPURLResponse)?.statusCode ?? 0))
@@ -61,10 +66,10 @@ class CandidateAPIDataSource {
         var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate"))!)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = header
-        request.httpBody = try? JSONEncoder().encode(candidate)
+        request.httpBody = try JSONEncoder().encode(candidate)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let (_, response) = try await URLSession.shared.data(for: request)
+        let (_, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             print(HTTPURLResponse.localizedString(forStatusCode: (response as? HTTPURLResponse)?.statusCode ?? 0))
@@ -84,7 +89,7 @@ class CandidateAPIDataSource {
         request.httpBody = try JSONEncoder().encode(candidate)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let (_, response) = try await URLSession.shared.data(for: request)
+        let (_, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             print(HTTPURLResponse.localizedString(forStatusCode: (response as? HTTPURLResponse)?.statusCode ?? 0))
@@ -101,7 +106,7 @@ class CandidateAPIDataSource {
         request.httpMethod = "DELETE"
         request.allHTTPHeaderFields = header
         
-        let (_, response) = try await URLSession.shared.data(for: request)
+        let (_, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             print(HTTPURLResponse.localizedString(forStatusCode: (response as? HTTPURLResponse)?.statusCode ?? 0))
@@ -117,7 +122,7 @@ class CandidateAPIDataSource {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = header
         
-        let (_, response) = try await URLSession.shared.data(for: request)
+        let (_, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             print(HTTPURLResponse.localizedString(forStatusCode: (response as? HTTPURLResponse)?.statusCode ?? 0))

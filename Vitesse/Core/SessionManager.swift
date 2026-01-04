@@ -17,7 +17,7 @@ import Foundation
 
 
 @MainActor
-final class SessionManager: ObservableObject {
+class SessionManager: ObservableObject {
 
     // Données mémorisées
     @Published private(set) var accessToken: String?

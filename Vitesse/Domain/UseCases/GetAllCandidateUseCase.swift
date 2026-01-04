@@ -7,6 +7,11 @@
 
 import Foundation
 
+
+protocol GetAllCandidateUseCaseProtocol {
+    func execute() async throws -> [Candidate]
+}
+
 class GetAllCandidateUseCase {
     
     let candidateRepository = CandidateRepository()
@@ -17,3 +22,5 @@ class GetAllCandidateUseCase {
     }
 
 }
+
+extension GetAllCandidateUseCase: GetAllCandidateUseCaseProtocol {}

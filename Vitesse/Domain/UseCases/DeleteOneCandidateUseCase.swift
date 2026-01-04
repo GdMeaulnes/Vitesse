@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol DeleteOneCandidateUseCaseProtocol {
+    func execute(id: String) async throws -> Bool
+}
+
 class DeleteOneCandidateUseCase {
     
     let userRepository = CandidateRepository()
@@ -16,3 +20,5 @@ class DeleteOneCandidateUseCase {
         return try await userRepository.deleteOneCandidate(id: id)
     }
 }
+
+extension DeleteOneCandidateUseCase: DeleteOneCandidateUseCaseProtocol {}

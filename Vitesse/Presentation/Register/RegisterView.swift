@@ -9,8 +9,8 @@ import SwiftUI
 struct RegisterView: View {
     
     @StateObject private var viewModel = RegisterViewModel()
-    
-    @State private var confirmPassword = ""
+        
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
@@ -64,7 +64,7 @@ struct RegisterView: View {
                     AuthTextFieldView(
                         systemImage: "lock",
                         placeholder: "Confirm Password",
-                        text: $confirmPassword,
+                        text: $viewModel.confirmPassword,
                         isSecure: true,
                         isValueVisible: $viewModel.isPasswordVisible
                     )
@@ -76,10 +76,19 @@ struct RegisterView: View {
                         .font(.footnote)
                         .multilineTextAlignment(.center)
                 }
+                if let error = viewModel.passwordError {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                }
                 
                 Button {
                     Task {
                         await viewModel.toRegister(newUser: viewModel.newUser)
+                        await MainActor.run {
+                            dismiss()
+                        }
+                        
                     }
                 } label: {
                     if viewModel.isLoading {

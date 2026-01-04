@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct LoginView: View {
-
+    
     @EnvironmentObject private var sessionManager: SessionManager
     @StateObject private var viewModel: LoginViewModel
-
+    
+    @State private var showRegisterSuccess = false
+    @State private var registerSuccessMessage = "Compte créé avec succès"
+    
     init(sessionManager: SessionManager) {
         _viewModel = StateObject(
-            wrappedValue: LoginViewModel(sessionManager: sessionManager)
+            wrappedValue: LoginViewModel(sessionManager: sessionManager,
+                                         logUserUseCase: LogUserUseCase())
         )
     }
-
+    
     @State private var goToRegister = false
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -53,6 +57,13 @@ struct LoginView: View {
                             isSecure: true,
                             isValueVisible: $viewModel.isPasswordVisible
                         )
+                    }
+                    
+                    if showRegisterSuccess {
+                        Text(registerSuccessMessage)
+                            .foregroundColor(.green)
+                            .font(.footnote)
+                            .multilineTextAlignment(.center)
                     }
                     
                     if let error = viewModel.errorMessage {
@@ -109,9 +120,14 @@ struct LoginView: View {
             }
             .navigationDestination(isPresented: $goToRegister) {
                 RegisterView()
+                    .onDisappear {
+                        // viewModel.resetForm()
+                        showRegisterSuccess = true
+                    }
+                }
             }
         }
-    }
+    
 }
 
 

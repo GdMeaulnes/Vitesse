@@ -169,7 +169,7 @@ struct CandidateDetailView: View {
     }
 }
 
-#Preview("Favori - User Admin") {
+#Preview("Non Favori - User Admin") {
     NavigationStack {
         CandidateDetailView(candidate: sampleCandidate2)
             .environmentObject({

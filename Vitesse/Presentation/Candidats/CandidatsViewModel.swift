@@ -51,8 +51,19 @@ final class CandidatsViewModel: ObservableObject {
     }
 
     // Les Uses Cases de l'Écran de liste des Candidats (Paragraphe 3 des specs)
-    let getAllCandidateUseCase = GetAllCandidateUseCase()
-    let deleteCandidateUseCase = DeleteOneCandidateUseCase()
+//    let getAllCandidateUseCase = GetAllCandidateUseCase()
+//    let deleteCandidateUseCase = DeleteOneCandidateUseCase()
+        private let getAllCandidateUseCase: GetAllCandidateUseCaseProtocol
+        private let deleteCandidateUseCase: DeleteOneCandidateUseCaseProtocol
+
+        init(
+            getAllCandidateUseCase: GetAllCandidateUseCaseProtocol,
+            deleteCandidateUseCase: DeleteOneCandidateUseCaseProtocol
+        ) {
+            self.getAllCandidateUseCase = getAllCandidateUseCase
+            self.deleteCandidateUseCase = deleteCandidateUseCase
+        }
+    
     
     func fetchCandidats() async {
         do {

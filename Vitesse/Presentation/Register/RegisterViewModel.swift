@@ -12,18 +12,40 @@ import SwiftUI
 @MainActor
 final class RegisterViewModel: ObservableObject {
     
+    let userRegisterUseCase = UserRegisterUseCase()
+    
     @Published var newUser = User(email: "", password: "", firstName: "", lastName: "")
     
     @Published var isLoading: Bool = false
     @Published var isPasswordVisible: Bool = false
     @Published var errorMessage: String?
     
+    @Published var confirmPassword = ""
+
+    var passwordsMatch: Bool {
+        !confirmPassword.isEmpty && newUser.password == confirmPassword
+    }
     
-    let userRegisterUseCase = UserRegisterUseCase()
-    
-    // Ajouter l'égalité des 2 password
     var isFormValid: Bool {
-        !newUser.email.isEmpty && !newUser.firstName.isEmpty && !newUser.lastName.isEmpty && !newUser.password.isEmpty
+        !newUser.email.isEmpty &&
+        !newUser.firstName.isEmpty &&
+        !newUser.lastName.isEmpty &&
+        !newUser.password.isEmpty &&
+        passwordsMatch
+    }
+    
+    var passwordError: String? {
+        guard !confirmPassword.isEmpty else { return nil }
+        return (newUser.password == confirmPassword) ? nil : "Passwords do not match"
+    }
+    
+    func validatePasswords() {
+        if !confirmPassword.isEmpty &&
+           newUser.password != confirmPassword {
+            errorMessage = "Passwords do not match"
+        } else {
+            errorMessage = nil
+        }
     }
     
     func toRegister(newUser: User) async {
@@ -36,6 +58,5 @@ final class RegisterViewModel: ObservableObject {
         }
         isLoading = false
     }
-    
 }
 

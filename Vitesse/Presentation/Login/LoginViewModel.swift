@@ -20,13 +20,17 @@ final class LoginViewModel: ObservableObject {
     @Published var errorMessage: String?
     
     private let sessionManager: SessionManager
+    private let logUserUseCase: LogUserUseCaseProtocol
+    
     init(
         sessionManager: SessionManager,
+        logUserUseCase: LogUserUseCaseProtocol
     ) {
         self.sessionManager = sessionManager
+        self.logUserUseCase = logUserUseCase
     }
     
-    let logUserUseCase = LogUserUseCase()
+    // let logUserUseCase = LogUserUseCase()
     
 
     var isFormValid: Bool {

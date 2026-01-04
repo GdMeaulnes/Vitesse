@@ -9,7 +9,15 @@ import SwiftUI
 
 struct CandidateListView: View {
     
-    @StateObject private var viewModel = CandidatsViewModel()
+    @StateObject private var viewModel : CandidatsViewModel
+    init() {
+        _viewModel = StateObject(
+            wrappedValue: CandidatsViewModel(
+                getAllCandidateUseCase: GetAllCandidateUseCase(),
+                deleteCandidateUseCase: DeleteOneCandidateUseCase()
+            )
+        )
+    }
     
     var body: some View {
         ZStack {
