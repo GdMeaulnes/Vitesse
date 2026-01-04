@@ -19,7 +19,7 @@ class CandidateRepository {
             var allCandidats : [Candidate] = []
             
             for candidatDTO in candidatListDTO {
-                let newCandidat = CandidateMapper.map2Candidate(candidateDataBaseDTO: candidatDTO)
+                let newCandidat = CandidateMapper.mapToCandidate(candidateDataBaseDTO: candidatDTO)
                 allCandidats.append(newCandidat)
             }
             return allCandidats
@@ -47,6 +47,18 @@ class CandidateRepository {
             return result
         }
         catch {
+            throw error
+        }
+    }
+    
+    func updateOneCandidate(candidate:Candidate) async throws -> Bool {
+        do {
+            let updatedCandidateDTO = CandidateMapper.mapToCandidateDTO(from: candidate)
+            
+            let result = try await candidateDataBaseDTO.updateOneCandidateById(id: candidate.id, candidate: updatedCandidateDTO)
+            
+            return result
+        } catch {
             throw error
         }
     }

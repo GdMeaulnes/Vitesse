@@ -13,6 +13,10 @@ final class CandidateDetailViewModel: ObservableObject {
     
     let toggleFavoriteStatusUseCase = ToggleFavoriteStatusUseCase()
     
+    let updateOneCandidateUseCase = UpdateOneCandidateUseCase()
+    
+    let getAllCandidateUseCase = GetAllCandidateUseCase()
+    
     @Published var candidate: Candidate
     @Published var editableCandidate: Candidate
     
@@ -33,10 +37,17 @@ final class CandidateDetailViewModel: ObservableObject {
         isEditing = false
     }
     
-    func saveEditing() {
+    func saveEditing() async {
         candidate = editableCandidate
         isEditing = false
-        // 👉 ici plus tard : sauvegarde DB / API
+        
+        do {
+            _ = try await updateOneCandidateUseCase.execute(canditate: candidate)
+            _ = try await getAllCandidateUseCase.execute()
+            
+        } catch {
+            print("Erreur MAJ candidat :", error)
+        }
     }
     
     func toggleFavorite(isAdmin: Bool) async {
@@ -45,7 +56,7 @@ final class CandidateDetailViewModel: ObservableObject {
         let newValue = !candidate.isFavorite
 
         do {
-            try await toggleFavoriteStatusUseCase.execute(id: candidate.id)
+            _ = try await toggleFavoriteStatusUseCase.execute(id: candidate.id)
                 candidate.isFavorite = newValue          
         } catch {
             // Option : afficher une alerte

@@ -15,6 +15,4 @@ class DeleteOneCandidateUseCase {
         
         return try await userRepository.deleteOneCandidate(id: id)
     }
-    
-    
 }

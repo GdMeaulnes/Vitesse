@@ -76,7 +76,7 @@ class CandidateAPIDataSource {
     //Description: Permet de mettre à jour un candidat via son identifiant fourni dans l'URL (candidateId)
     // L'API oblige à donner une structure CandidateDTO complète et pas seulement le ou les champs modifiés
     // Pas d'update du champs isFavorite
-    func updateCandidateById(id: String, candidate: CandidateDTO) async throws -> Bool {
+    func updateOneCandidateById(id: String, candidate: CandidateDTO) async throws -> Bool {
         
         var request = URLRequest(url: URL(string: (Secrets.apiProtocol + "://" + Secrets.apiHost + ":" + Secrets.apiPort + "/candidate/\(id)"))!)
         request.httpMethod = "PUT"

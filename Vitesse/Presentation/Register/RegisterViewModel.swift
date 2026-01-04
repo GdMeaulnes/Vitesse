@@ -29,7 +29,7 @@ final class RegisterViewModel: ObservableObject {
     func toRegister(newUser: User) async {
         do {
             isLoading = true
-            try await userRegisterUseCase.execute(user: newUser)
+            _ = try await userRegisterUseCase.execute(user: newUser)
             errorMessage = nil
         } catch {
             self.errorMessage = "Error during registration"

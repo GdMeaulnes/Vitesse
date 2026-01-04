@@ -32,11 +32,35 @@ struct CandidateDetailView: View {
                 .padding(.bottom, 30)
             
             HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("\(viewModel.candidate.firstName) \(viewModel.candidate.lastName)")
-                        .font(.title)
-                        .fontWeight(.semibold)
+                VStack(alignment: .leading, spacing: 6) {
+                    
+                    if viewModel.isEditing {
+                        
+                        VStack(spacing: 8) {
+                            
+                            TextField(
+                                "Prénom",
+                                text: $viewModel.editableCandidate.firstName
+                            )
+                            .font(.title2)
+                            .textFieldStyle(.roundedBorder)
+                            
+                            TextField(
+                                "Nom",
+                                text: $viewModel.editableCandidate.lastName
+                            )
+                            .font(.title2)
+                            .textFieldStyle(.roundedBorder)
+                        }
+                        
+                    } else {
+                        
+                        Text("\(viewModel.candidate.firstName) \(viewModel.candidate.lastName)")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                    }
                 }
+                //}
                 
                 Spacer()
                 
@@ -56,50 +80,50 @@ struct CandidateDetailView: View {
                         .font(.system(size: 18))
                 }
                 .opacity(sessionManager.isAdmin ? 1.0 : 0.2)
-                
             }
-            .padding()
-            
-            AuthTextFieldView(
-                systemImage: "phone",
-                placeholder: "Phone",
-                text: viewModel.isEditing
-                ? $viewModel.editableCandidate.phone
-                : .constant(viewModel.candidate.phone),
-                isSecure: false,
-                isValueVisible: .constant(false)
-            )
-            
-            AuthTextFieldView(
-                systemImage: "envelope",
-                placeholder: "Email",
-                text: viewModel.isEditing
-                ? $viewModel.editableCandidate.email
-                : .constant(viewModel.candidate.email),
-                isSecure: false,
-                isValueVisible: .constant(false)
-            )
-            
-            AuthTextFieldView(
-                systemImage: "link",
-                placeholder: "LinkedIn",
-                text: viewModel.isEditing
-                ? $viewModel.editableCandidate.linkedinURL
-                : .constant(viewModel.candidate.linkedinURL),
-                isSecure: false,
-                isValueVisible: .constant(false)
-            )
-            
-            AuthTextAreaView(
-                systemImage: "text.page",
-                placeholder: "",
-                text: viewModel.isEditing
-                ? $viewModel.editableCandidate.note
-                : .constant(viewModel.candidate.note),
-                maxCharacters: 300,
-                isEditable: viewModel.isEditing
-            )
         }
+        .padding()
+        
+        AuthTextFieldView(
+            systemImage: "phone",
+            placeholder: "Phone",
+            text: viewModel.isEditing
+            ? $viewModel.editableCandidate.phone
+            : .constant(viewModel.candidate.phone),
+            isSecure: false,
+            isValueVisible: .constant(false)
+        )
+        
+        AuthTextFieldView(
+            systemImage: "envelope",
+            placeholder: "Email",
+            text: viewModel.isEditing
+            ? $viewModel.editableCandidate.email
+            : .constant(viewModel.candidate.email),
+            isSecure: false,
+            isValueVisible: .constant(false)
+        )
+        
+        AuthTextFieldView(
+            systemImage: "link",
+            placeholder: "LinkedIn",
+            text: viewModel.isEditing
+            ? $viewModel.editableCandidate.linkedinURL
+            : .constant(viewModel.candidate.linkedinURL),
+            isSecure: false,
+            isValueVisible: .constant(false)
+        )
+        
+        AuthTextAreaView(
+            systemImage: "text.page",
+            placeholder: "",
+            text: viewModel.isEditing
+            ? $viewModel.editableCandidate.note
+            : .constant(viewModel.candidate.note),
+            maxCharacters: 300,
+            isEditable: viewModel.isEditing
+        )
+        
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 if viewModel.isEditing {
@@ -112,7 +136,9 @@ struct CandidateDetailView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 if viewModel.isEditing {
                     Button("Done") {
-                        viewModel.saveEditing()
+                        Task {
+                            await viewModel.saveEditing()
+                        }
                     }
                     .fontWeight(.semibold)
                 } else {
@@ -129,6 +155,7 @@ struct CandidateDetailView: View {
         }
     }
 }
+
 
 #Preview("Favori - User Non Admin") {
     NavigationStack {

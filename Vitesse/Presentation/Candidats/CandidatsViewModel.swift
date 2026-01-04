@@ -44,17 +44,6 @@ final class CandidatsViewModel: ObservableObject {
                 return matchFavorite && matchSearch
             }
     }
-    
-//    let normalizedSearch = searchText
-//        .lowercased()
-//        .folding(options: .diacriticInsensitive, locale: .current)
-//
-//    let fullName = "\(candidat.prenom) \(candidat.nom)"
-//        .lowercased()
-//        .folding(options: .diacriticInsensitive, locale: .current)
-//
-//    let matchSearch = normalizedSearch.isEmpty
-//        || fullName.contains(normalizedSearch)
 
     let getAllCandidateUseCase = GetAllCandidateUseCase()
     
@@ -80,7 +69,7 @@ final class CandidatsViewModel: ObservableObject {
     func deleteOneCandidate(id: String) async {
         do {
             isLoading = true
-            try await deleteCandidateUseCase.execute(id: id)
+            _ = try await deleteCandidateUseCase.execute(id: id)
         } catch {
             print("Une erreur d'effacement s'est produite: \(error)")
         }
