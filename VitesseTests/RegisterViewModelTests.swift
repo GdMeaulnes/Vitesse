@@ -66,9 +66,22 @@ struct RegisterViewModelTests {
     func isFormValid_returnsTrue_whenAllFieldsAreFilled() {
         let vm = RegisterViewModel()
 
-        vm.newUser = makeUser()
+        let user = makeUser()
+        vm.newUser = user
+        vm.confirmPassword = user.password
 
         #expect(vm.isFormValid == true)
+    }
+    
+    @Test
+    func isFormValid_returnsFalse_whenPasswordsDoNotMatch() {
+        let vm = RegisterViewModel()
+
+        let user = makeUser()
+        vm.newUser = user
+        vm.confirmPassword = "differentPassword"
+
+        #expect(vm.isFormValid == false)
     }
 
     // MARK: - toRegister (local behavior)

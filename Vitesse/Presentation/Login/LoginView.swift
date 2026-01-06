@@ -40,6 +40,7 @@ struct LoginView: View {
                     Text("Login")
                         .font(.title)
                         .fontWeight(.semibold)
+                        .accessibilityAddTraits(.isHeader)
                     
                     VStack(spacing: 15) {
                         AuthTextFieldView(
@@ -49,6 +50,8 @@ struct LoginView: View {
                             isSecure: false,
                             isValueVisible: .constant(false)
                         )
+                        .accessibilityLabel("Adresse email")
+                        .accessibilityHint("Entrez votre adresse email")
                         
                         AuthTextFieldView(
                             systemImage: "lock",
@@ -56,6 +59,10 @@ struct LoginView: View {
                             text: $viewModel.credential.password,
                             isSecure: true,
                             isValueVisible: $viewModel.isPasswordVisible
+                        )
+                        .accessibilityLabel("Mot de passe")
+                        .accessibilityHint("Entrez votre mot de passe")
+                        .accessibilityValue(viewModel.isPasswordVisible ? "Mot de passe visible" : "Mot de passe masqué"
                         )
                     }
                     
@@ -95,6 +102,8 @@ struct LoginView: View {
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
                         .disabled(!viewModel.isFormValid || viewModel.isLoading)
+                        .accessibilityLabel("Se connecter")
+                        .accessibilityHint(viewModel.isFormValid ? "Appuyez pour vous connecter" : "Veuillez remplir tous les champs")
                         
                         Button {
                             goToRegister = true
@@ -104,6 +113,8 @@ struct LoginView: View {
                         }
                         .buttonStyle(.bordered)
                         .controlSize(.large)
+                        .accessibilityLabel("Créer un compte")
+                        .accessibilityHint("Accéder à l’écran de création de compte")
                     }
                     .frame(maxWidth: 340)
                     .padding()
@@ -117,6 +128,12 @@ struct LoginView: View {
                 }
                 .padding()
                 .background(Color(.systemGroupedBackground))
+            }
+            .onAppear {
+                UIAccessibility.post(
+                    notification: .screenChanged,
+                    argument: "Écran de connexion"
+                )
             }
             .navigationDestination(isPresented: $goToRegister) {
                 RegisterView()
